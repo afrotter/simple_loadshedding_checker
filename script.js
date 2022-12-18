@@ -1,13 +1,19 @@
+  function fetchAPI() {
+  
   fetch('https://loadshedding.eskom.co.za/LoadShedding/GetStatus', {
     mode: 'cors'
   })
-  .then(response => response.text())
-  .then(text => console.log(text))
-  .catch(error => console.error(error));
+  .then(response => response.json())
+  .then(data => {
+    // Extract the data you want to display
+    const status = data.status;
+    const message = data.message;
 
-  const fetch = require('node-fetch');
+    // Use the extracted data to update the DOM
+    document.getElementById('status').innerHTML = status;
+    document.getElementById('message').innerHTML = message;
+  });
+}
 
-fetch('https://loadshedding.eskom.co.za/LoadShedding/GetStatus')
-  .then(response => response.text())
-  .then(text => console.log(text))
-  .catch(error => console.error(error));
+// Call the fetchAPI function to execute the API request and display the data
+fetchAPI();
