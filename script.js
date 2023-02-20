@@ -1,7 +1,7 @@
 import fetch from 'https://cdn.skypack.dev/node-fetch';
   
 fetch('https://loadshedding.eskom.co.za/LoadShedding/GetStatus', {
-    mode: 'cors'
+    mode: 'no-cors'
   })
   .then(response => response.text())
   .then(text => console.log(text))
